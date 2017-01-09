@@ -1,5 +1,5 @@
 class Api::V1::LinksController < ApplicationController
-
+  skip_before_action :require_login
   def create
     @link = Link.new link_params
     if @link.save
@@ -17,7 +17,7 @@ class Api::V1::LinksController < ApplicationController
     just_read = @link.read_changed? && @link.read
     if @link.save
       Read.create(link: @link) if just_read
-      head :no_content
+      render json: @link, status: 200
     else
       render json: @link.errors.full_messages, status: 500
     end
