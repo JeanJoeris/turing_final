@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ .link {
+   border: 5px solid black;
+   margin-bottom: 10px;
+   padding-left: 15px;
+   width: 300px;
+ }
+
+ .read {
+   color: purple;
+ }
+
+ .unread {
+   color: blue;
+ }
