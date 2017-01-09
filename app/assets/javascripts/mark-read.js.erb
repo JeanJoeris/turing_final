@@ -18,9 +18,14 @@ $(document).ready(function(){
 
 function createReadEntry(link) {
   linkId = link.id
-
+  <% if Rails.env == "production" %>
+    var hotReadUrl = "https://jj-hot-reads.herokuapp.com/api/v1/read"
+  <% else %>
+    var hotReadUrl = "http://localhost:4000/api/v1/read"
+  <% end %>
+  var hotReadUrl =
   $.ajax({
-    url: "http://localhost:4000/api/v1/read",
+    url: hotReadUrl,
     method: 'POST',
     data: {link_id: linkId},
     type: 'json'
