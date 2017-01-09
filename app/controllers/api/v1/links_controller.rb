@@ -1,5 +1,11 @@
 class Api::V1::LinksController < ApplicationController
   skip_before_action :require_login
+
+  def show
+    @link = Link.find(params[:id])
+    render json: @link, status: 200
+  end
+
   def create
     @link = Link.new link_params
     if @link.save
@@ -9,7 +15,6 @@ class Api::V1::LinksController < ApplicationController
       render json: @link.errors.full_messages, status: 500
     end
   end
-
 
   def update
     @link = Link.find params[:id]
