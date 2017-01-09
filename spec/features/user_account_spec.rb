@@ -95,5 +95,6 @@ describe "User account" do
     click_on "Sign out"
 
     expect(current_path).to eq(login_path)
+    expect(page).to have_content("Goodbye!")
   end
 end
