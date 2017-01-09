@@ -21,8 +21,8 @@ function fetchTopReads() {
 
 function styleHotReads(reads) {
   Object.keys(reads).map(function(key, index) {
-    // special styling for top read
     $link = $(`#link-${key}`)
+    // special styling for top read
     if (index === 0) {
       $link.prepend(topLinkHTML)
     } else {
