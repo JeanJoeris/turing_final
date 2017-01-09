@@ -19,7 +19,9 @@
     </p>
     <p class="link_buttons">
       <button class="mark-read">Mark as Read</button>
-      <button class='edit-link'>Edit</button>
+      <form class="" action="/links/<%= link.id %>/edit" method="get">
+        <button class='edit-link'>Edit</button>
+      </form>
       <button class='delete-link'>Delete</button>
     </p>
   </div>
