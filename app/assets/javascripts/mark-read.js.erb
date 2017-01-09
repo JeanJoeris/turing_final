@@ -12,7 +12,8 @@ $(document).ready(function(){
       data: {read: true}
     })
     .then( createReadEntry )
-    .then( updateLinkToRead.bind(this, linkId) );
+    .then( updateLinkToRead.bind(this, linkId) )
+    .then( refreshTopReads )
   })
 })
 
