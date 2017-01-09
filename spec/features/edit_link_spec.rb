@@ -34,4 +34,17 @@ describe "edit link" do
 
     expect(page).to have_text("Url is not a valid URL")
   end
+
+  it "fails edit with no title" do
+    link = create(:link)
+
+    visit links_path
+
+    click_on "Edit"
+    fill_in "link_title", with: ""
+    fill_in "link_url", with: "google.com"
+    click_on "Update Link"
+
+    expect(page).to have_text("Title can't be blank")
+  end
 end
