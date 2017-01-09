@@ -12,7 +12,7 @@ $(document).ready(function(){
       data: {read: true}
     })
     .then( createReadEntry )
-    .then( updateLink.bind(this, linkId) );
+    .then( updateLinkToRead.bind(this, linkId) );
   })
 })
 
@@ -27,17 +27,17 @@ function createReadEntry(link) {
   })
 }
 
-function updateLink(linkId) {
+function updateLinkToRead(linkId) {
   // Doing concatination instead of interpolation b/c I can't get js.erb and js.es6 to work together
   var targetLinkID = "#link-" + String(linkId)
   var $target = $(targetLinkID)
-  $target.removeClass('read')
+  $target.removeClass('unread')
   $target.addClass('read')
-  $target.children('.link_read').text("Read?: true")
-  changeButton($target)
+  $target.find('.link-read-status').text("true")
+  changeButtonToRead($target)
 }
 
-function changeButton(target) {
+function changeButtonToRead(target) {
   $targetButton = target.find('.mark-read')
   $targetButton.text('Mark as Unread')
   $targetButton.removeClass('mark-read')

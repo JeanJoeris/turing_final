@@ -14,5 +14,6 @@ describe "mark link as read", js: true do
     click_on "Mark as Read"
 
     expect(page).to have_text("Read?: true")
+    expect(page).to have_content("Mark as Unread")
   end
 end
