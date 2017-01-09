@@ -1,4 +1,4 @@
-var $newLinkTitle, $newLinkUrl;
+var $newLinkTitle, $newLinkUrl, hotReadUrl;
 
 $(document).ready(function(){
 
@@ -12,18 +12,13 @@ $(document).ready(function(){
       data: {read: true}
     })
     .then( createReadEntry )
-    .then( updateLink );
+    .then( updateLink.bind(this, linkId) );
   })
 })
 
 function createReadEntry(link) {
   linkId = link.id
-  <% if Rails.env == "production" %>
-    var hotReadUrl = "https://jj-hot-reads.herokuapp.com/api/v1/read"
-  <% else %>
-    var hotReadUrl = "http://localhost:4000/api/v1/read"
-  <% end %>
-  var hotReadUrl =
+  hotReadUrl = fetchHotReadUrl()
   $.ajax({
     url: hotReadUrl,
     method: 'POST',
@@ -32,6 +27,27 @@ function createReadEntry(link) {
   })
 }
 
-function updateLink(link) {
+function updateLink(linkId) {
+  // Doing concatination instead of interpolation b/c I can't get js.erb and js.es6 to work together
+  var targetLinkID = "#link-" + String(linkId)
+  var $target = $(targetLinkID)
+  $target.removeClass('read')
+  $target.addClass('read')
+  $target.children('.link_read').text("Read?: true")
+  changeButton($target)
+}
 
+function changeButton(target) {
+  $targetButton = target.find('.mark-read')
+  $targetButton.text('Mark as Unread')
+  $targetButton.removeClass('mark-read')
+  $targetButton.addClass('mark-unread')
+}
+
+function fetchHotReadUrl() {
+  <% if Rails.env == "production" %>
+    return hotReadUrl = "https://jj-hot-reads.herokuapp.com/api/v1/read"
+  <% else %>
+    return hotReadUrl = "http://localhost:4000/api/v1/read"
+  <% end %>
 }
