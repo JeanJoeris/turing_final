@@ -20,7 +20,7 @@ RSpec.describe "can create links", :js => :true do
     expect(Link.count).to eq(1)
   end
 
-  xit "fails with non-url" do
+  scenario "fails with non-url" do
     visit "/"
 
     fill_in "link-title", :with => "Turing"
