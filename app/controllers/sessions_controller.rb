@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login
+
   def new
   end
 
@@ -6,8 +8,10 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:success] = "Welcome back!"
       redirect_to :root
     else
+      flash[:error] = "We could not find that username/password combination"
       redirect_to :login
     end
   end
