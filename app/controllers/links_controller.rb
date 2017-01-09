@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all
+    @links = Link.where(user_id: current_user.id)
     @hot_links = Link.hot
   end
 
