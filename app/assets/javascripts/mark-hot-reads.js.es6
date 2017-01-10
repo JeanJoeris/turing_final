@@ -1,4 +1,4 @@
-var $link
+var $link, topReadID
 $(document).ready(function() {
   refreshTopReads()
 })
@@ -20,15 +20,30 @@ function fetchTopReads() {
 }
 
 function styleHotReads(reads) {
+  topReadID = getTopReadID(reads)
   Object.keys(reads).map(function(key, index) {
     $link = $(`#link-${key}`)
-    // special styling for top read
-    if (index === 0) {
+    if (isTopLink(topReadID, key, $link)) {
       $link.prepend(topLinkHTML)
     } else {
       $link.prepend(hotLinkHTML)
     }
   })
+}
+
+function isTopLink(topReadID, key, $link) {
+  return topReadID === key && $link.data('id')
+}
+
+function getTopReadID(reads) {
+  var max = 0
+  var idOfMax
+  Object.keys(reads).map(function(key, index) {
+    if (reads[key] > max) {
+      idOfMax = key
+    }
+  })
+  return idOfMax
 }
 
 function topLinkHTML() {
