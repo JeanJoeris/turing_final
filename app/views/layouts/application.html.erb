@@ -18,11 +18,11 @@
   <div class="container-fluid">
     <div class="flash">
       <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
     </div>
     <% if current_user %>
-    <%= link_to "Sign out", logout_path %>
+      <%= link_to "Sign out", logout_path %>
     <% end %>
     <%= yield %>
   </div>
