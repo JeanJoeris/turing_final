@@ -8,6 +8,14 @@
   <input type="submit" value="Add Link">
 </form>
 
+<div class="filtering">
+  <span>Show only read</span><input type="checkbox" id="filter-read">
+  <span>Show only unread</span><input type="checkbox" id="filter-unread">
+</div>
+<div class="searching">
+  <span>Search links</span><input type="text" id="search-links">
+</div>
+
 <div id="links-list">
   <% @links.each do |link| %>
   <div class='link' data-id=<%= link.id %> id=<%= "link-#{link.id}" %>>
@@ -15,7 +23,7 @@
     <p class='link-url'><%= link.url %></p>
 
     <p class="link_read">
-      Read?: <%= link.read %>
+      Read?: <span class="link-read-status"><%= link.read %></span>
     </p>
     <p class="link_buttons">
       <button class="mark-read">Mark as Read</button>

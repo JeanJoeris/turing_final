@@ -10,4 +10,8 @@ class Link < ApplicationRecord
       .group("links.url")
       .order('count("reads".id) DESC').limit(10)
   }
+
+  def self.by_user_id(id)
+    where(user_id: id).order(created_at: :desc)
+  end
 end
