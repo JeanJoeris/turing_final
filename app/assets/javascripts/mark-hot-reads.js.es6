@@ -32,7 +32,7 @@ function styleHotReads(reads) {
 }
 
 function isTopLink(topReadID, key, $link) {
-  return topReadID === key && $link.data('id')
+  return topReadID === key && String($link.data('id')) === key
 }
 
 function getTopReadID(reads) {
