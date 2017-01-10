@@ -40,6 +40,7 @@ function getTopReadID(reads) {
   var idOfMax
   Object.keys(reads).map(function(key, index) {
     if (reads[key] > max) {
+      max = reads[key]
       idOfMax = key
     }
   })
