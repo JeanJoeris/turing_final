@@ -9,29 +9,35 @@
 </form>
 
 <div class="filtering">
-  <span>Show only read</span><input type="checkbox" id="filter-read">
-  <span>Show only unread</span><input type="checkbox" id="filter-unread">
+  <span>Show only read </span><input type="checkbox" id="filter-read">
+  <span>Show only unread </span><input type="checkbox" id="filter-unread">
 </div>
 <div class="searching">
   <span>Search links</span><input type="text" id="search-links">
 </div>
 
-<div id="links-list">
-  <% @links.each do |link| %>
-  <div class='link' data-id=<%= link.id %> id=<%= "link-#{link.id}" %>>
-    <p class='link-title'><%= link.title %></p>
-    <p class='link-url'><%= link.url %></p>
+<div class="container">
+    <div id="links-list">
+      <div class="row">
+      <% @links.each do |link| %>
+      <div class="col-md-3">
+        <div class='link' data-id=<%= link.id %> id=<%= "link-#{link.id}" %>>
+          <p class='link-title'><%= link.title %></p>
+          <p class='link-url'><%= link.url %></p>
 
-    <p class="link_read">
-      Read?: <span class="link-read-status"><%= link.read %></span>
-    </p>
-    <p class="link_buttons">
-      <button class="mark-read">Mark as Read</button>
-      <form class="" action="/links/<%= link.id %>/edit" method="get">
-        <button class='edit-link'>Edit</button>
-      </form>
-      <button class='delete-link'>Delete</button>
-    </p>
+          <p class="link_read">
+            Read?: <span class="link-read-status"><%= link.read %></span>
+          </p>
+          <p class="link_buttons">
+            <button class="mark-read">Mark as Read</button>
+            <form class="" action="/links/<%= link.id %>/edit" method="get">
+              <button class='edit-link'>Edit</button>
+            </form>
+            <button class='delete-link'>Delete</button>
+          </p>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <% end %>
 </div>

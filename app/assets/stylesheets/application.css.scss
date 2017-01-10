@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ #links-list {
+   margin-top: 20px;
+ }
+
  .hot-read {
    background-color: red;
    width: 120px;
@@ -22,9 +26,11 @@
 
  .link {
    border: 5px solid black;
-   margin-bottom: 10px;
-   padding-left: 15px;
+   padding-left: 20px;
+   padding-top: 20px;
+   margin-top: 50px;
    width: 300px;
+   height: 300px;
  }
 
  .read {
